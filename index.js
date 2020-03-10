@@ -15,9 +15,9 @@ async function fetchImage(url, callback, headers) {
   callback(blob);
 }
 
-L.TileLayer.WMSHeader = L.TileLayer.WMS.extend({
+L.TileLayer.CustomHeader = L.TileLayer.extend({
   initialize: function (url, options, headers) {
-    L.TileLayer.WMS.prototype.initialize.call(this, url, options);
+    L.TileLayer.prototype.initialize.call(this, url, options);
     this.headers = headers;
   },
   createTile(coords, done) {
@@ -41,6 +41,6 @@ L.TileLayer.WMSHeader = L.TileLayer.WMS.extend({
   }
 });
 
-L.TileLayer.wmsHeader = function (url, options, headers, abort) {
-  return new L.TileLayer.WMSHeader(url, options, headers, abort);
+L.TileLayer.customHeader = function (url, options, headers, abort) {
+  return new L.TileLayer.CustomHeader(url, options, headers, abort);
 };
